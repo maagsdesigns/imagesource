@@ -1,0 +1,68 @@
+<html>
+<head>
+
+    <style>
+#myImg
+{
+    position: fixed;
+    left: 110px;
+    top: 50px;
+    touch-action: none;
+    user-select: none;
+    object-fit: fill;
+    height: 850px;
+    width: 650px;
+}
+
+#canvasMain {
+    /* display: flex; */
+    background: url(https://cdn.shopify.com/s/files/1/0629/7767/1305/files/background-wall.jpg?v=1713560551);
+    background-size: cover;
+    margin: -15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 1045px;
+    width: 880px;
+    position: relative;
+    padding: 0px;
+}
+
+#canvasMain .canvas-container {
+    display: block;
+    margin: auto;
+    filter: drop-shadow(0 0 5px #000);
+}
+    </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+<script src="domtoimg.js" ></script>
+
+</head>
+<body>
+    <div id="canvasMain" class="canvasShadow">        
+        <div class="canvas-container" style="position: relative; user-select: none;">
+            <img id="myImg" src="https://cdn.shopify.com/s/files/1/0629/7767/1305/files/postersrcimg.jpg?v=1713560998" class="lower-canvas" />
+        </div>
+    </div>
+
+    <br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/>
+    <button id="save_image_locally">Take Screenshot</button>
+
+    <script type="text/javascript">
+
+    $('#save_image_locally').click(function()
+    {
+
+        domtoimage.toBlob(document.getElementById('canvasMain'))
+    .then(function (blob) {
+        var downloadFileName = "maagsdesigns_poster_img_"+new Date().getTime()+".jpeg";
+        window.saveAs(blob, downloadFileName);
+    });
+
+  }); 
+      
+    </script>
+</body>
+</html>
