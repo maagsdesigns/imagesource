@@ -43,11 +43,7 @@
     <div id="canvasMain" class="canvasShadow">        
         <div class="canvas-container" style="position: relative; user-select: none;">
             Hello world
-            <img id="myImg" source={{
-                header: {
-                  'Access-Control-Allow-Origin': '*'
-                }
-              }} src="posters_src/IMG_1265.JPG" class="lower-canvas" />
+            <img id="myImg" src="IMG_1265.JPG" class="lower-canvas" />
         </div>
     </div>
 
@@ -59,35 +55,14 @@
 
     $('#save_image_locally').click(function()
     {
-        // html2canvas(document.querySelector("#canvasMain")).then(canvas => {
-        // canvas.toBlob(function(blob) {
-        //   window.saveAs(blob, 'my_image.jpg');
-        // });
-        // });
-
         html2canvas(document.getElementById("canvasMain"), { useCORS:true,allowTaint: true}).then(function (canvas)
         {
         var imgBase64 = canvas.toDataURL();
-        // console.log("imgBase64:", imgBase64);
         var imgURL = "data:image/" + imgBase64;
         var triggerDownload = $("<a>").attr("href", imgURL).attr("download", "layout_"+new Date().getTime()+".jpeg").appendTo("body");
         triggerDownload[0].click();
         triggerDownload.remove();
     });
-
-
-//         html2canvas($("#canvasMain")[0]).then((canvas) => 
-//         {
-//     console.log("done ... ");
-//     theCanvas = canvas;
-
-
-//                 canvas.toBlob(function(blob) {
-//                     saveAs(blob, "Dashboard.png"); 
-//                 });
-// });
-
-
 
 
   }); 
